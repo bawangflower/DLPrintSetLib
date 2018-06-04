@@ -1,0 +1,6 @@
+framework module DLNetwork {
+  umbrella header "DLNetwork-umbrella.h"
+
+  export *
+  module * { export * }
+}

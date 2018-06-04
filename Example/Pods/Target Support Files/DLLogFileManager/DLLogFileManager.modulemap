@@ -1,0 +1,6 @@
+framework module DLLogFileManager {
+  umbrella header "DLLogFileManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

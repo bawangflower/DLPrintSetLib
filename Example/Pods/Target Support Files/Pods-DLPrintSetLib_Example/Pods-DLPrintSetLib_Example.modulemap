@@ -1,0 +1,6 @@
+framework module Pods_DLPrintSetLib_Example {
+  umbrella header "Pods-DLPrintSetLib_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

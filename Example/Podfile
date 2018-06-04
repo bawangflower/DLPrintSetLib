@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://git.hzdlsoft.com/ios_lib/DLPods.git'
+
+inhibit_all_warnings!
+platform :ios, '9.0'
+use_frameworks!
+target 'DLPrintSetLib_Example' do
+  pod 'DLPrintSetLib', :path => '../'
+end

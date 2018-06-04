@@ -1,0 +1,6 @@
+framework module DLPopupControl {
+  umbrella header "DLPopupControl-umbrella.h"
+
+  export *
+  module * { export * }
+}

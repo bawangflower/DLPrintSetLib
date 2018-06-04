@@ -1,0 +1,45 @@
+{
+  "name": "DLPrintSetLib",
+  "version": "0.1.0",
+  "summary": "DLPrintSetLib.",
+  "description": "多种方式的打印设置",
+  "homepage": "https://github.com/bawangflower/DLPrintSetLib",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "bawangflower": "flower258@dingtalk.com"
+  },
+  "source": {
+    "git": "https://github.com/bawangflower/DLPrintSetLib.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "DLPrintSetLib/Classes/**/*",
+  "resource_bundles": {
+    "DLPrintSetLib": [
+      "DLPrintSetLib/Assets/*.png"
+    ]
+  },
+  "public_header_files": "DLPrintSetLib/Classes/*.h",
+  "dependencies": {
+    "Colours": [
+
+    ],
+    "Masonry": [
+
+    ],
+    "DLFoundationLib": [
+
+    ],
+    "DLNetwork": [
+
+    ],
+    "MJExtension": [
+
+    ]
+  }
+}

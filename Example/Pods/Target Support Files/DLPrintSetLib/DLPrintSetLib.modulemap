@@ -1,0 +1,6 @@
+framework module DLPrintSetLib {
+  umbrella header "DLPrintSetLib-umbrella.h"
+
+  export *
+  module * { export * }
+}
