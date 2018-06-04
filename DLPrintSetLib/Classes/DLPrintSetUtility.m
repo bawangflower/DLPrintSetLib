@@ -15,7 +15,7 @@
         imageName = [imageName stringByAppendingString:@"@2x.png"];
     }
 
-    NSString *bundleClassPath = [[NSBundle bundleForClass:NSClassFromString(@"DLPrintSetLib")] bundlePath];
+    NSString *bundleClassPath = [[NSBundle bundleForClass:[self class]] bundlePath];
     NSString *bundleName = [[[[bundleClassPath lastPathComponent] stringByDeletingPathExtension] componentsSeparatedByString:@"_"] firstObject];
     NSString *bundleDirectory = [bundleName stringByAppendingString:@".bundle"];
     
