@@ -62,10 +62,15 @@
 
 - (void)reloadDataWithData:(NSDictionary *)pageData dictRelation:(NSDictionary *)dictRelation {
     _pageData = pageData;
-    _dictRelation = dictRelation;
-    if (_pageData) {
-        [self.tableView reloadData];
+    NSString *params = _pageData[@"params"];
+    if (params.length>0) {
+        NSDictionary *paramsDic = [self dictWithJsonString:params];
+        self.printProgramItem.printProgramIP = getNotNilValue(paramsDic[@"serverIp"]);
+        self.printProgramItem.printProgramPort = getNotNilValue(paramsDic[@"serverPort"]);
+        self.printProgramItem.printProgramCount = getNotNilValue(paramsDic[@"printCount"]);
     }
+    _dictRelation = dictRelation;
+    [self.tableView reloadData];
 }
 
 - (void)save {
@@ -122,20 +127,14 @@
     DLMineSettingCell *cell;
     NSDictionary *item = self.dataSource[indexPath.section][indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:kDLMineSettingCellDefaultReuseId];
-    NSString *params = _pageData[@"params"];
-    if (params.length>0) {
-        //服务端保存过数据
-        NSDictionary *paramsDic = [self dictWithJsonString:params];
-        cell.detailTextLabel.text = getNotNilValue(paramsDic[item[KRemoteDataKey]]);
-    }else {
-        //本地数据
-        if ([item[kPrintSettingCellKey] isEqualToString:kPrintSettingHostKey]) {
-            cell.detailTextLabel.text = self.printProgramItem.printProgramIP;
-        }else if ([item[kPrintSettingCellKey] isEqualToString:kPrintSettingPortKey]) {
-            cell.detailTextLabel.text = self.printProgramItem.printProgramPort;
-        }else if ([item[kPrintSettingCellKey] isEqualToString:kPrintSettingNumberKey]) {
-            cell.detailTextLabel.text = self.printProgramItem.printProgramCount;
-        }
+    
+    //本地数据
+    if ([item[kPrintSettingCellKey] isEqualToString:kPrintSettingHostKey]) {
+        cell.detailTextLabel.text = self.printProgramItem.printProgramIP;
+    }else if ([item[kPrintSettingCellKey] isEqualToString:kPrintSettingPortKey]) {
+        cell.detailTextLabel.text = self.printProgramItem.printProgramPort;
+    }else if ([item[kPrintSettingCellKey] isEqualToString:kPrintSettingNumberKey]) {
+        cell.detailTextLabel.text = self.printProgramItem.printProgramCount;
     }
     cell.textLabel.text = item[kPrintSettingCellTitle];
     
