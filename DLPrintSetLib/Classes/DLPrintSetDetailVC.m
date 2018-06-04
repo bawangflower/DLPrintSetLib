@@ -73,7 +73,12 @@
     [self.view addSubview:_segmentControl];
     [_segmentControl addTarget:self action:@selector(changePrintType:) forControlEvents:UIControlEventValueChanged];
     [_segmentControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view);
+        if (@available (iOS 11.0,*)) {
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }else {
+            make.top.equalTo(self.mas_topLayoutGuide);
+        }
+        make.left.right.equalTo(self.view);
         make.height.mas_equalTo(40);
     }];
     
@@ -170,7 +175,7 @@
         [self.view addSubview:_printVC.view];
         [_printVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
-            make.top.mas_equalTo(41);
+            make.top.equalTo(_segmentControl.mas_bottom);
         }];
         [_printVC didMoveToParentViewController:self];
     }else if (item.printType == DLPrintTypeCloud) {
@@ -186,7 +191,7 @@
         [self.view addSubview:_cloudPrintVC.view];
         [_cloudPrintVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
-            make.top.mas_equalTo(41);
+            make.top.equalTo(_segmentControl.mas_bottom);
         }];
         [_cloudPrintVC didMoveToParentViewController:self];
     }

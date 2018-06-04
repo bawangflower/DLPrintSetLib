@@ -122,10 +122,11 @@
     DLMineSettingCell *cell;
     NSDictionary *item = self.dataSource[indexPath.section][indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:kDLMineSettingCellDefaultReuseId];
-    id params = _pageData[@"params"];
-    if (params && [[params class] isKindOfClass:[NSDictionary class]]) {
+    NSString *params = _pageData[@"params"];
+    if (params.length>0) {
         //服务端保存过数据
-        cell.detailTextLabel.text = getNotNilValue(params[item[KRemoteDataKey]]);
+        NSDictionary *paramsDic = [self dictWithJsonString:params];
+        cell.detailTextLabel.text = getNotNilValue(paramsDic[item[KRemoteDataKey]]);
     }else {
         //本地数据
         if ([item[kPrintSettingCellKey] isEqualToString:kPrintSettingHostKey]) {
@@ -220,6 +221,22 @@
     NSString *pattern = @"((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))";
     NSRange range = [host rangeOfString:pattern options:NSRegularExpressionSearch];
     return (range.location != NSNotFound && range.length > 0);
+}
+
+- (NSDictionary *)dictWithJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
 
 #pragma mark - Getter

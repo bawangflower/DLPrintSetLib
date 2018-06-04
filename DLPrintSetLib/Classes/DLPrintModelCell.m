@@ -8,6 +8,7 @@
 
 #import "DLPrintModelCell.h"
 #import "DLPrintModelWebVC.h"
+#import "DLPrintSetUtility.h"
 #import <Masonry/Masonry.h>
 #import <DLFoundationLib/UIWindow+DLCategory.h>
 
@@ -46,7 +47,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectModel:)];
     [_picView addGestureRecognizer:tap];
     
-    _checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"printModelSelect"]];
+    _checkImageView = [[UIImageView alloc] initWithImage:[DLPrintSetUtility dl_bundleImageWithName:@"printModelSelect"]];
     [self.contentView addSubview:_checkImageView];
     [_checkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-6);

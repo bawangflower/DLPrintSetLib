@@ -26,6 +26,7 @@
 #import "DLPrintSetDetailVC.h"
 #import "DLPrintSetLib.h"
 #import "DLPrintSettingViewController.h"
+#import "DLPrintSetUtility.h"
 #import "DLPrintSetViewController.h"
 #import "UIView+Size.h"
 

@@ -80,11 +80,11 @@
     config.salesPrintRemote = @"0";
     config.modelType = DLPrintModelLocal;
     config.sessionId = @"5782A38B-8A34-3F89-ECBB-4F71406C36F6";
-    config.serverUrl = @"http://139.196.124.16:7901";
+    config.generalServer = @"http://139.196.124.16:7901";
     config.clientDeviceNo = @"18868378766";
     DLPrintProgramItem *printProgramItem = [[DLPrintProgramItem alloc] init];
-    printProgramItem.printProgramIP = @"192.168.0.3";
-    printProgramItem.printProgramPort = @"22222";
+    printProgramItem.printProgramIP = @"192.168.8.888";
+    printProgramItem.printProgramPort = @"88888";
     printProgramItem.printProgramCount = @"2";
     config.programItem = printProgramItem;
     

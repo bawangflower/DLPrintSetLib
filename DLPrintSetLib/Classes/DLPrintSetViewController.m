@@ -15,6 +15,7 @@
 #import <Colours/Colours.h>
 #import <DLFoundationLib/DLAlertItem.h>
 #import <DLFoundationLib/DLViewUtility.h>
+#import "DLPrintSetUtility.h"
 
 static NSString *const KCellIdentifier = @"CellIdentifier";
 
@@ -52,7 +53,12 @@ static NSString *const KCellIdentifier = @"CellIdentifier";
     printTypeView.backgroundColor = [UIColor colorFromHexString:@"#f8f8f8"];
     [self.view addSubview:printTypeView];
     [printTypeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view);
+        if (@available (iOS 11.0,*)) {
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }else {
+            make.top.equalTo(self.mas_topLayoutGuide);
+        }
+        make.left.right.equalTo(self.view);
         make.height.mas_equalTo(40);
     }];
     
@@ -71,7 +77,7 @@ static NSString *const KCellIdentifier = @"CellIdentifier";
         make.centerY.equalTo(printTypeView);
     }];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow-down"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[DLPrintSetUtility dl_bundleImageWithName:@"arrow-down"]];
     imageView.userInteractionEnabled = YES;
     [printTypeView addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -189,7 +195,7 @@ static NSString *const KCellIdentifier = @"CellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KCellIdentifier forIndexPath:indexPath];
     DLPrintChannelItem *item = _channels[indexPath.row];
     cell.textLabel.text = item.title;
-    cell.imageView.image = [UIImage imageNamed:item.icon];
+    cell.imageView.image = [DLPrintSetUtility dl_bundleImageWithName:item.icon];
     return cell;
 }
 

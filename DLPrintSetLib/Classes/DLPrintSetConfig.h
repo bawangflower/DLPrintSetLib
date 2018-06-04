@@ -51,7 +51,7 @@ typedef void(^DLPrintSetConfigPrintTestBlock)();
 
 @property (nonatomic, strong) DLPrintProgramItem *programItem;
 
-@property (nonatomic, copy) NSString *serverUrl;
+@property (nonatomic, copy) NSString *generalServer;
 
 @property (nonatomic, copy) DLPrintSetConfigOpenAutoPrintBlock openAutoPrintBlock;
 
